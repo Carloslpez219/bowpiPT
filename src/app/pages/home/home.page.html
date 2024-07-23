@@ -1,0 +1,32 @@
+<ion-content color="light">
+  <ion-list-header>
+    <ion-label>To do</ion-label>
+    <ion-button (click)="newRecipe()"><ion-icon slot="end" name="add-circle"></ion-icon></ion-button>
+  </ion-list-header>
+  <ion-list [inset]="true">
+    <ion-item *ngFor="let item of items">
+      <ion-checkbox [checked]="item.done" (ionChange)="toggleDone(item)">
+
+        <ion-alert
+        [isOpen]="isAlertOpen"
+          header="Califica esta receta"
+          subHeader="Seleciona un numero del 1 al 3"
+          [buttons]="alertButtons"
+          [inputs]="alertInputs"
+          (didDismiss)="setOpen(false)"
+        ></ion-alert>
+
+      <ion-label>
+        <h2 style="font-size: 22px;">{{item.title}}</h2>
+        <p style="font-size: 16px; color: rgb(191, 191, 191); white-space: pre-wrap; word-wrap: break-word;">{{item.description}}</p>
+        <ion-note style="font-size: 12px;">{{ item.date }}</ion-note>
+      </ion-label>
+      </ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-button color="dark" (click)="logOut()">
+    <ion-icon slot="start" name="power-outline" class="icon-menu"></ion-icon>
+    <ion-note>Salir</ion-note>
+  </ion-button>
+</ion-content>

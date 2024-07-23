@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar receta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Nueva receta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card class="body animate__animated animate__bounceInDown">
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="newForm">
+      <ion-list>
+  
+        <!-- Campo Titulo -->
+        <ion-item mode="md">
+          <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+          <ion-input placeholder="Titulo" type="text" clearOnEdit="true" clearInput formControlName="titulo"></ion-input>
+        </ion-item>
+        <div class="errors" *ngIf="titulo!.invalid && (titulo!.dirty || titulo!.touched)">
+          <span *ngIf="titulo!.errors!['required']">
+            <ion-label class="error-container">Este campo es requerido</ion-label>
+          </span>
+        </div>
+
+        <ion-item mode="md">
+          <ion-icon slot="start" name="text"></ion-icon>
+          <ion-textarea [autoGrow]="true" placeholder="descripcion" type="text" clearOnEdit="true" clearInput formControlName="descripcion"></ion-textarea>
+        </ion-item>
+        <div class="errors" *ngIf="descripcion!.invalid && (descripcion!.dirty || descripcion!.touched)">
+          <span *ngIf="descripcion!.errors!['required']">
+            <ion-label class="error-container">Este campo es requerido</ion-label>
+          </span>
+        </div>
+  
+      </ion-list>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" class="button-1" type="submit" [disabled]="!newForm.valid">Aceptar
+              <ion-icon slot="start" color="white" name="enter-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-card>
+
+  <span class="screen__background__shape screen__background__shape1"></span>
+  <span class="screen__background__shape screen__background__shape2"></span>
+  <span class="screen__background__shape screen__background__shape3"></span>
+  <span class="screen__background__shape screen__background__shape4"></span>
+  
+</ion-content>
