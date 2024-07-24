@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detalles</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+
+  <span class="screen__background__shape screen__background__shape1"></span>
+  <span class="screen__background__shape screen__background__shape2"></span>
+  <span class="screen__background__shape screen__background__shape3"></span>
+  <span class="screen__background__shape screen__background__shape4"></span>
+
+  <ion-card>
+    <img *ngIf="recipe.image" [src]="recipe.image" alt="Imagen de receta"/>
+    <ion-card-header>
+      <ion-card-title>{{recipe.title}}</ion-card-title>
+      <ion-card-subtitle>{{recipe.date}}</ion-card-subtitle>
+      
+    </ion-card-header>
+    <ion-chip color="danger" *ngIf="!recipe.done" style="margin-left: 20px;">Sin finalizar</ion-chip>
+    <ion-chip color="success"  *ngIf="recipe.done" style="margin-left: 20px;">Finalizada</ion-chip>
+    <ion-card-content>
+      {{recipe.description}}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button (click)="toggleDone()" expand="block" fill="clear" shape="round"  *ngIf="!recipe.done">
+    Finalizar
+  </ion-button>
+
+</ion-content>
+

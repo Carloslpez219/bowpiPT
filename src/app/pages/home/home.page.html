@@ -1,32 +1,56 @@
-<ion-content color="light">
+<ion-content >
+
+  <span class="screen__background__shape screen__background__shape1"></span>
+  <span class="screen__background__shape screen__background__shape2"></span>
+  <span class="screen__background__shape screen__background__shape3"></span>
+  <span class="screen__background__shape screen__background__shape4"></span>
+
+
   <ion-list-header>
     <ion-label>To do</ion-label>
     <ion-button (click)="newRecipe()"><ion-icon slot="end" name="add-circle"></ion-icon></ion-button>
   </ion-list-header>
   <ion-list [inset]="true">
-    <ion-item *ngFor="let item of items">
-      <ion-checkbox [checked]="item.done" (ionChange)="toggleDone(item)">
+    <ion-item-sliding *ngFor="let item of items">
 
-        <ion-alert
-        [isOpen]="isAlertOpen"
-          header="Califica esta receta"
-          subHeader="Seleciona un numero del 1 al 3"
-          [buttons]="alertButtons"
-          [inputs]="alertInputs"
-          (didDismiss)="setOpen(false)"
-        ></ion-alert>
+      <ion-item-options side="start">
+        <ion-item-option color="success" expandable (click)="details(item)">Details</ion-item-option>
+      </ion-item-options>
 
-      <ion-label>
-        <h2 style="font-size: 22px;">{{item.title}}</h2>
-        <p style="font-size: 16px; color: rgb(191, 191, 191); white-space: pre-wrap; word-wrap: break-word;">{{item.description}}</p>
-        <ion-note style="font-size: 12px;">{{ item.date }}</ion-note>
-      </ion-label>
-      </ion-checkbox>
-    </ion-item>
+      <ion-item>
+        <ion-checkbox [checked]="item.done" (ionChange)="toggleDone(item)">
+  
+        <ion-label>
+          <h2 style="font-size: 22px;">{{item.title}}</h2>
+          <p style="font-size: 16px; color: rgb(191, 191, 191); white-space: pre-wrap; word-wrap: break-word;">{{item.description}}</p>
+          <ion-note style="font-size: 12px;">{{ item.date }}</ion-note>
+        </ion-label>
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-item-options>
+        <ion-item-option (click)="takeOrPickPicture(item)"><ion-icon slot="icon-only" name="camera"></ion-icon></ion-item-option>
+        <ion-item-option color="danger" (click)="deleteItem(item)" *ngIf="datosUsuario.type == 'admin'" ><ion-icon slot="icon-only" name="trash"></ion-icon></ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
   </ion-list>
 
-  <ion-button color="dark" (click)="logOut()">
-    <ion-icon slot="start" name="power-outline" class="icon-menu"></ion-icon>
-    <ion-note>Salir</ion-note>
-  </ion-button>
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar size="small">
+    <ion-button (click)="logOut()" ><ion-icon slot="icon-only" name="power-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+<ion-alert
+          [isOpen]="isAlertOpen"
+            header="Califica esta receta"
+            subHeader="Seleciona un numero del 1 al 3"
+            [buttons]="alertButtons"
+            [inputs]="alertInputs"
+            (didDismiss)="setOpen(false)"
+          ></ion-alert>

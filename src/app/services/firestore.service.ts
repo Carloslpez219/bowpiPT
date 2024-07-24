@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core';
-import { Firestore, collectionData, collection, query, where, getDocs, updateDoc, doc, addDoc } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, query, where, getDocs, updateDoc, doc, addDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Storage } from '@ionic/storage-angular';
 
@@ -32,6 +32,16 @@ export class FirestoreService {
   updateItemCalificacion(itemId: string, calificacion: string): Promise<void> {
     const itemDoc = doc(this.firestore, `recipes/${itemId}`);
     return updateDoc(itemDoc, { calificacion: calificacion });
+  }
+
+  updateItemImage(itemId: string, image: string): Promise<void> {
+    const itemDoc = doc(this.firestore, `recipes/${itemId}`);
+    return updateDoc(itemDoc, { image: image });
+  }
+
+  deleteItem(itemId: string): Promise<void> {
+    const itemDoc = doc(this.firestore, `recipes/${itemId}`);
+    return deleteDoc(itemDoc);
   }
 
   async addRecipe(title: string, description: string): Promise<void> {

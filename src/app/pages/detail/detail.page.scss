@@ -1,0 +1,42 @@
+
+.screen__background__shape {
+	transform: rotate(45deg);
+	position: absolute;
+  opacity: 0.8;  
+}
+
+.screen__background__shape1 {
+	height: 50px;
+	width: 500px;
+	background: #259bbe;	
+	top: 420px;
+	right: 50px;	
+	border-radius: 60px;
+}
+
+.screen__background__shape2 {
+	height: 50px;
+	width: 520px;
+	background: rgb(28, 85, 165);	
+	top: 405px;
+	right: -50px;	
+	border-radius: 32px;
+}
+
+.screen__background__shape3 {
+	height: 50px;
+	width: 500px;
+	background: #f6851f;	
+	top: 210px;
+	right: 50px;	
+	border-radius: 60px;
+}
+
+.screen__background__shape4 {
+	height: 50px;
+	width: 520px;
+	background: #fcb712;	
+	top: 230px;
+	right: -80px;	
+	border-radius: 60px;
+}
